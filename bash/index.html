@@ -21,6 +21,7 @@
       // 5. Run a standard Linux bash shell
       // This will pull required binaries on-demand from the default cloud image
       await cx.run("/bin/bash", ["--login"]);
+      await cx.run("/bin/bash", ["-c", "./bash.sh"]);
     }
 
     startVM();
