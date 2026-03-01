@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en" style="height: 100%;">
+<head>
+  <meta charset="utf-8" />
+  <title>bash</title>
+  <!-- 1. Include the CheerpX runtime library -->
+  <script src="https://cxrtnc.leaningtech.com/1.2.2/cx.js"></script>
+</head>
+<body style="height: 100%; margin: 0; background: #000; color: #fff;">
+  <!-- 2. This element will act as the terminal display -->
+  <pre id="console" style="height: 100%; margin: 0; padding: 10px; overflow: auto;"></pre>
+
+  <script type="module">
+    async function startVM() {
+      // 3. Initialize the CheerpX Linux environment
+      const cx = await CheerpX.Linux.create();
+      
+      // 4. Attach the VM output to our HTML element
+      cx.setConsole(document.getElementById("console"));
+
+      // 5. Run a standard Linux bash shell
+      // This will pull required binaries on-demand from the default cloud image
+      await cx.run("/bin/bash", ["--login"]);
+    }
+
+    startVM();
+  </script>
+</body>
+</html>
