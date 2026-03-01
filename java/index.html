@@ -16,7 +16,17 @@
 
         // 4. Run the JAR from the virtual filesystem
         // Note: "/app/" refers to the root of your web server
-        var name='app'
+        const queryString = window.location.search;
+        
+        // Create a URLSearchParams object to easily work with parameters
+        const urlParams = new URLSearchParams(queryString);
+
+        // Get specific parameter values using the .get() method
+        const n = urlParams.get('name');
+        var name='app';
+        if (n) {
+            name=n;
+        }
         await cheerpjRunJar("/app/"+name+".jar");
     </script>
 </body>
