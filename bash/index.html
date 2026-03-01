@@ -22,9 +22,22 @@
       // This will pull required binaries on-demand from the default cloud image
       await cx.run("/bin/bash", ["--login"]);
       await cx.run("/bin/bash", ["-c", "./bash.sh"]);
+      return cx
+      
     }
 
-    startVM();
+    const cx=startVM();
+let output = "";
+// Custom console to capture data
+cx.setConsole({
+  write: (data) => {
+    output += new TextDecoder().decode(data);
+  }
+});
+
+await cx.run("/bin/bash", ["-c", "uptime"]);
+console.log("The VM says: " + output);
+
   </script>
 </body>
 </html>
