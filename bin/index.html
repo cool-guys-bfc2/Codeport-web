@@ -2,7 +2,7 @@
 <html lang="en" style="height: 100%;">
   <head>
     <meta charset="utf-8" />
-    <title>CheerpX Getting Started</title>
+    <title>bash</title>
     <script src="https://cxrtnc.leaningtech.com/1.2.2/cx.js"></script>
     <script type="module">
       // The read-only disk image from Leaning Technologies' fast cloud backend
@@ -28,6 +28,24 @@
           { type: "dir", path: "/data", dev: dataDevice },
           { type: "devs", path: "/dev" },
         ],
+      });
+
+      // Interact with a console
+      cx.setConsole(document.getElementById("console"));
+
+      // Run a full-featured shell in your browser.
+      await cx.run("/bin/bash", ["--login"], {
+        env: [
+          "HOME=/home/user",
+          "USER=user",
+          "SHELL=/bin/bash",
+          "EDITOR=vim",
+          "LANG=en_US.UTF-8",
+          "LC_ALL=C",
+        ],
+        cwd: "/home/user",
+        uid: 1000,
+        gid: 1000,
       });
     </script>
   </head>
